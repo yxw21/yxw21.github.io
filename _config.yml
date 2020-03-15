@@ -1,0 +1,31 @@
+title: socket
+name: socket
+signature: Everything is possible
+twitter: yxw21
+github: yxw21
+hackerone: yxw21
+mail: yxw21@wearehackerone.com
+avatar: /image/avatar.jpg
+paginate: 5
+paginate_path: /page/:num
+footer-text: © 2020 socket
+permalink: pretty
+disqus: blog-liwi0xbf2s
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
+  input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css
+    css_class: "highlight"
+# Set the Sass partials directory, as we're using @imports
+# Use the following plug-ins
+plugins:
+  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jekyll-paginate
+# Exclude these files from your production _site
+exclude:
+  - LICENSE
+  - README.md
+  - CNAME

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/monokai-sublime.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="/css/cell.css" type="text/css" media="all" />
+    <title>{{site.title}}</title>
+  </head>
+  <body>
+    {% include header.html %}
+    <div id="qzhai_content">
+      <div class="wp">
+        <div class="qzhai-content uk-card uk-card-default">
+          <div class="uk-card-body uk-flex uk-flex-between uk-flex-column">
+            <article class="uk-article">
+              <h1 class="uk-article-title">
+                {{page.title}}
+              </h1>
+              <div class="uk-article-meta">
+                <time>{{page.date | date: '%Y-%m'}}</time>
+                {% for tag in page.tags %}
+                <span class="tag">{{tag}}</span>
+                {% endfor %}
+              </div>
+              <div class="qzhai-the-content">
+                {{content}}
+              </div>
+            </article>
+            <script>
+              function replaceUrl(url) {
+                url = url.replace("[url]", location.href);
+                window.open(url, "_blank");
+              }
+            </script>
+            <div class="uk-card uk-card-default">
+              <ul class="uk-iconnav qzhai-share uk-flex uk-flex-center">
+                <li>
+                  <a
+                    onclick="replaceUrl('https://twitter.com/intent/tweet?url=[url]')"
+                    class="qzf share-twitter"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                          onclick="replaceUrl('https://www.facebook.com/sharer.php?u=[url]')"
+                          class="qzf share-facebook"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                          onclick="replaceUrl('https://connect.qq.com/widget/shareqq/index.html?url=[url]&title={{page.title}}')"
+                          class="qzf share-qq"
+                  ></a>
+                </li>
+                <li>
+                  <a href="javascript:;" class="qzf share-weixin"></a>
+                  <div uk-drop="pos: top-center" class="qzhai-share-weixin">
+                    <div class="uk-card uk-card-small">
+                      <img
+                              src="/qrCode.php?data={{ site.baseurl }}{{ post.url }}"
+                              ul-img
+                      />
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a
+                          onclick="replaceUrl('//service.weibo.com/share/share.php?url=[url]&type=button&language=zh_cn&title={{page.title}}&searchPic=true')"
+                          class="qzf share-weibo"
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include footer.html %}
+    <style>
+      .qzhai-content:not(.qzhai-content-page) .uk-card-body {
+        min-height: 70vh;
+        padding: 2rem;
+      }
+      .tag {
+        display: inline-block;
+        padding: 1px 10px;
+        background: red;
+        color: white;
+        border-radius: 10px;
+        margin-left: 10px;
+      }
+    </style>
+    <script>
+      var func_qzhai = [];
+      var qzhai = {
+        url: "https:\/\/www.yxw21.com",
+        ajaxUrl: "https:\/\/www.yxw21.com\/wp-admin\/admin-ajax.php"
+      };
+      qzhai.ajaxIgnore = "";
+      func_qzhai.push(function($) {
+        $(".qzhai-content pre").each(function(i, e) {
+          $(e)
+            .addClass("qzhai_highlight")
+            .append('<div class="qzhai_highlight_heade"><span></span><div>');
+          hljs.highlightBlock(e);
+        });
+      });
+    </script>
+    <script type="text/javascript" src="/js/highlight.pack.js"></script>
+    <script type="text/javascript" src="/js/cell.js"></script>
+  </body>
+</html>

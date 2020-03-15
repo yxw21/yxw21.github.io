@@ -1,0 +1,60 @@
+<header class="qzhai-header  ">
+  <div uk-sticky="top:150; animation: uk-animation-slide-top;">
+    <div class="uk-flex wp qzhai-header-flex">
+      <div class="author uk-flex uk-flex-between uk-card uk-card-default ">
+        <div id="qzhai-nav-author" class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <a href="/">
+              <img class="uk-border-circle " src="{{site.avatar}}" uk-img />
+            </a>
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom">
+              <a href="/"> {{site.name}} </a>
+            </h3>
+            <p class="uk-text-meta uk-margin-remove-top">
+              <span>{{site.signature}}</span>
+            </p>
+          </div>
+        </div>
+        <div
+          class="uk-width-auto qzhai-nav-box uk-navbar-container uk-navbar-transparent uk-visible@s"
+          id="qzhai-nav-toggle"
+          uk-navbar
+        >
+          <div class="uk-flex">
+            <div class="menu-weibo-container">
+              <ul id="nav-top" class="qzhai-nav uk-navbar-nav">
+                <li title="hackerone">
+                  <a href="https://hackerone.com/yxw21">
+                    <img class="hackerone" src="/image/h1.ico">
+                  </a>
+                </li>
+                <li title="twitter">
+                  <a href="https://twitter.com/yxw21">
+                    <img class="twitter" src="/image/twitter.png">
+                  </a>
+                </li>
+                <li title="github">
+                  <a href="https://github.com/yxw21">
+                    <img class="github" src="/image/github.png">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+  .qzhai-nav-box{width: auto!important;}
+  .twitter,.github,.hackerone{width: 20px;
+    height: 20px;}
+  @media (max-width: 639px) {
+    .uk-visible\@s {
+      display:block !important
+    }
+  }
+</style>

@@ -1,0 +1,226 @@
+---
+layout: default
+---
+
+{% include header.html %} {% if site.posts.size == 0 %}
+<h2>No post found</h2>
+{% endif %}
+
+<div id="qzhai_content">
+  <div class="qzhai-list">
+    <div class="wp">
+      <div class="uk-grid-medium" uk-grid>
+        <div class="uk-width-3-4@s">
+          <div
+            id="qzhai_post_list"
+            class="uk-child-width-1-1@s  qzhai-list qzhai-list-box uk-grid-medium"
+            uk-grid="masonry: true"
+          >
+            {% for post in paginator.posts %}
+            <div>
+              <div class="item item-two uk-card uk-card-default">
+                <div class="uk-grid-small" uk-grid>
+                  <div class="uk-width-2-5@s">
+                    <a
+                      href="{{ site.baseurl }}{{ post.url }}"
+                      class="post-list-thumbnail"
+                      data-can-open="1"
+                    >
+                      <span
+                        class="post-list-label uk-label"
+                        style="background-color: #1e87f0;"
+                        >{{post.tags[0]}}</span
+                      >
+                      {% if post.thumbnail %}
+                      <div
+                        class="post-list-thumbnail-background uk-background-cover"
+                        data-src="{{post.thumbnail}}"
+                        uk-img
+                      ></div>
+                      {% else %}
+                      <div
+                        class="post-list-thumbnail-background uk-background-cover"
+                        data-src="/image/default_img.png"
+                        uk-img
+                      ></div>
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div
+                    class="uk-width-3-5@s uk-flex uk-flex-column uk-flex-between"
+                  >
+                    <div>
+                      <a
+                        class="post-list-title"
+                        href="{{ site.baseurl }}{{ post.url }}"
+                        data-can-open="1"
+                      >
+                        <h2>{{post.title}}</h2>
+                      </a>
+                      <a
+                        class="post-list-excerpt"
+                        href="{{ site.baseurl }}{{ post.url }}"
+                        class="uk-panel"
+                        data-can-open="1"
+                      >
+                        <p>
+                          {{post.excerpt}}
+                        </p>
+                      </a>
+                    </div>
+                    <span class="post-list-time"
+                      >{{ post.date | date: "%Y-%m-%d" }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div id="qzhai-sidebar" class="uk-width-1-4@s">
+          <div class="qzhai-sidebar-box">
+            <div uk-sticky="offset: 100;bottom: #qzhai-sidebar">
+              <ul class="qzhai-sidebar">
+                <li class="qzhai-widget widget_categories">
+                  <div class="uk-card uk-card-default">
+                    <div class="uk-card-header"><h4>About</h4></div>
+                    <ul>
+                      <li>Write code, find bugs</li>
+                      <li><a href="mailto:{{site.mail}}?subject=from blog">Welcome to send me an email</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="qzhai-widget widget_categories">
+                  <div class="uk-card uk-card-default">
+                    <div class="uk-card-header"><h4>Tags</h4></div>
+                    <ul>
+                      {% for tag in site.tags %}
+                      <li>
+                        <h6 style="margin-bottom: 10px;">{{ tag[0] }}</h6>
+                        <ul>
+                          {% for post in tag[1] %} {% if post.title != null %}
+                          <li class="cat-item cat-item-3">
+                            {% if post.link %}
+                            <a href="{{ post.link }}">
+                              {% else %}
+                              <a href="{{ site.baseurl }}{{ post.url }}">
+                                {% endif %} {{ post.title }}
+                              </a>
+                            </a>
+                          </li>
+                          {% endif %} {% endfor %}
+                        </ul>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+                <li class="qzhai-widget widget_archive">
+                  <div class="uk-card uk-card-default">
+                    <div class="uk-card-header"><h4>Archives</h4></div>
+                    <ul>
+                      {% for post in site.posts %}
+                      <li>
+                        {% capture yearMonth %}{{ post.date | date: '%Y-%m' }}{%
+                        endcapture %} {% capture nextYearMonth %}{{
+                        post.next.date | date: '%Y-%m' }}{% endcapture %} {% if
+                        yearMonth != nextYearMonth %}
+                        <h6 style="margin-bottom: 10px;">
+                          {{ post.date | date: '%Y-%m' }}
+                        </h6>
+                        {% endif %}
+                        <ul>
+                          <li>
+                            <a href="{{ site.baseurl }}{{ post.url }}"
+                              >{{post.title}}</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+          {% if paginator.previous_page %}
+          <span class="prev">
+            <a
+              href="{{ site.baseurl }}{{ paginator.previous_page_path }}"
+              class="prev"
+            >
+              Previous
+            </a>
+          </span>
+          {% endif %} {% if paginator.next_page %}
+          <span class="next">
+            <a
+              href="{{ site.baseurl}}{{ paginator.next_page_path }}"
+              class="next"
+            >
+              Next
+            </a>
+          </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include footer.html %}
+
+<style>
+  @media (max-width: 639px) {
+    #qzhai-sidebar {
+      margin-top: 20px !important;
+    }
+  }
+  .post-list-excerpt {
+    max-height: 100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+  }
+  .pagination{
+    width: 100%;
+    text-align: right;
+  }
+  .pagination a{
+    display: inline-block;
+    padding: 5px 10px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    background: #1e87f0;
+    color: #ffffff;
+    border-radius: 10px;
+  }
+</style>
+
+<script>
+  window.addEventListener(
+    "onorientationchange" in window ? "orientationchange" : "resize",
+    function() {
+      location.reload();
+    },
+    false
+  );
+  window.qzhai = {};
+  window.func_qzhai = [];
+  func_qzhai.push(function($) {
+    $(".qzhai-content pre").each(function(i, e) {
+      $(e)
+              .addClass("qzhai_highlight")
+              .append('<div class="qzhai_highlight_heade"><span></span><div>');
+      hljs.highlightBlock(e);
+    });
+  });
+</script>
