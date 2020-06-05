@@ -6,6 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
+    <meta http-equiv="pragma" content="cache">
+    <meta http-equiv="Cache-Control" content="private, max-age=31536000" />
     <link
       rel="stylesheet"
       href="/css/monokai-sublime.css"
@@ -101,10 +103,7 @@
     </style>
     <script>
       var func_qzhai = [];
-      var qzhai = {
-        url: "https:\/\/www.yxw21.com",
-        ajaxUrl: "https:\/\/www.yxw21.com\/wp-admin\/admin-ajax.php"
-      };
+      var qzhai = {};
       qzhai.ajaxIgnore = "";
       func_qzhai.push(function($) {
         $(".qzhai-content pre").each(function(i, e) {
