@@ -2,7 +2,6 @@
 layout: post
 title: "Send amf package using python"
 tags: [python,amf]
-xss: 444
 ---
 
 ```
